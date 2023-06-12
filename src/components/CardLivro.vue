@@ -1,13 +1,11 @@
 <script setup>
+import MButton from '@/components/MButton.vue'
+
 const props = defineProps({
-    livro: Object
+  livro: Object
 })
 
 const emit = defineEmits(['adicionarAoCarrinho'])
-
-function adicionarAoCarrinho(livro) {
-    emit('adicionarAoCarrinho', livro)
-}
 
 function formatarPreco(preco) {
   return 'R$ ' + preco.toFixed(2).replace('.', ',')
@@ -25,7 +23,8 @@ function formatarPreco(preco) {
       <p class="preco-livro">{{ formatarPreco(props.livro.price) }}</p>
     </div>
     <div class="card-buttons-livros">
-      <button @click="adicionarAoCarrinho(props.livro)">Adicionar ao carrinho</button>
+      <m-button @click="emit('adicionarAoCarrinho', props.livro)" text="Adicionar ao carrinho" />
+      <m-button text="Compartilhar" />
     </div>
   </div>
 </template>
@@ -34,12 +33,18 @@ function formatarPreco(preco) {
 .card-livro {
   margin: 5px 10px;
   padding: 10px;
-  background-color: beige;
+  background-color:rgb(168, 165, 165);
   border-radius: 10px;
   width: 180px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: all 0.2s;
+}
+
+.card-livro:hover{
+  transition: 0.2s;
+  transform: scale(1.1);
 }
 
 .wrap-livro {
