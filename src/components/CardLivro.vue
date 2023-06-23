@@ -1,6 +1,9 @@
 <script setup>
 import MButton from '@/components/MButton.vue'
 
+import CartPlus from 'vue-material-design-icons/CartPlus.vue'
+import ShareVariant from 'vue-material-design-icons/ShareVariant.vue'
+
 const props = defineProps({
   livro: Object
 })
@@ -23,8 +26,17 @@ function formatarPreco(preco) {
       <p class="preco-livro">{{ formatarPreco(props.livro.price) }}</p>
     </div>
     <div class="card-buttons-livros">
-      <m-button @click="emit('adicionarAoCarrinho', props.livro)" text="Adicionar ao carrinho" />
-      <m-button text="Compartilhar" />
+      <m-button
+        class="perigo"
+        @click="emit('adicionarAoCarrinho', props.livro)"
+        text="Adicionar ao carrinho"
+      >
+        <cart-plus /> Adicionar ao carrinho
+      </m-button>
+      <m-button class="sucesso">
+        <share-variant />
+        Compartilhar
+      </m-button>
     </div>
   </div>
 </template>
@@ -33,7 +45,7 @@ function formatarPreco(preco) {
 .card-livro {
   margin: 5px 10px;
   padding: 10px;
-  background-color:rgb(168, 165, 165);
+  background-color: rgb(168, 165, 165);
   border-radius: 10px;
   width: 180px;
   display: flex;
@@ -42,7 +54,7 @@ function formatarPreco(preco) {
   transition: all 0.2s;
 }
 
-.card-livro:hover{
+.card-livro:hover {
   transition: 0.2s;
   transform: scale(1.1);
 }
